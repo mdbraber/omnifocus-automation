@@ -1,0 +1,119 @@
+/*{
+	"type": "library",
+	"targets": ["omnifocus"],
+	"identifier": "com.mdbraber.fnLibrary",
+	"version": "1.0"
+}*/
+
+var _ = (function() {
+	var fnLibrary = new PlugIn.Library(new Version("1.0"));
+
+	fnLibrary.changePriority = function(tasks, prio) {
+		tasks.forEach(function(task) {
+			task.removeTags([tagNamed("1"), tagNamed("2"), tagNamed("3"), tagNamed("4"), tagNamed("5")]);
+			task.addTag(tagNamed(prio));
+			fnLibrary.reorderTags(task);
+		});
+	};
+
+	fnLibrary.reorderTags = function(task) {
+		allTags = [];
+		tags.apply(tag => allTags.push(tag));
+		assignedTags = task.tags;
+		
+		sortedAssignedTags = assignedTags.sort(function(a, b) {
+			return allTags.indexOf(a) > allTags.indexOf(b);
+		});
+		task.removeTags(assignedTags);
+		task.addTags(sortedAssignedTags);
+	}	
+
+	fnLibrary.changeDueDate = function(selection, days) {
+		var tasksToChange = [];
+		
+		// get default due time to use if task has no due date
+		defaultDueTime = settings.defaultObjectForKey("DefaultDueTime");
+		defaultDueTimeSplit = defaultDueTime.split(":");
+		defaultDueHours = defaultDueTimeSplit[0];
+		defaultDueMinutes = defaultDueTimeSplit[1];
+		
+		// get 'task' for each selected project
+		selection.projects.forEach(function(project) {
+		  tasksToChange.push(project.task);
+		});
+		
+		tasksToChange = selection.tasks.concat(tasksToChange);
+		
+		tasksToChange.forEach(function(task) {
+		  // get existing due date
+		  existingDueDate = task.effectiveDueDate;
+		
+		  // if no due date, use now as starting point; otherwise use existing due date
+		  if (existingDueDate == null) {
+		    startingDueDate = new Date();
+		    startingDueDate.setHours(defaultDueHours);
+		    startingDueDate.setMinutes(defaultDueMinutes);
+		  } else {
+		    startingDueDate = existingDueDate;
+		  }
+		
+		  // add one day to get new due date
+		  timeToAdd = new DateComponents();
+		  timeToAdd.day = days;
+		  newDueDate = Calendar.current.dateByAddingDateComponents(
+		    startingDueDate,
+		    timeToAdd
+		  );
+		
+		  // set the due date of the task
+		  task.dueDate = newDueDate;
+		});
+	}
+
+	fnLibrary.changeStartDate = function(selection, days) {
+		var tasksToChange = [];
+		
+		// get default due time to use if task has no due date
+		defaultStartTime = settings.defaultObjectForKey("DefaultStartTime");
+		defaultStartTimeSplit = defaultStartTime.split(":");
+		defaultStartHours = defaultStartTimeSplit[0];
+		defaultStartMinutes = defaultStartTimeSplit[1];
+		
+		// get 'task' for each selected project
+		selection.projects.forEach(function(project) {
+		  tasksToChange.push(project.task);
+		});
+		
+		tasksToChange = selection.tasks.concat(tasksToChange);
+		
+		tasksToChange.forEach(function(task) {
+		  // get existing due date
+		  existingStartDate = task.effectiveDeferDate;
+		
+		  // if no due date, use now as starting point; otherwise use existing due date
+		  if (existingStartDate == null) {
+		    startingStartDate = new Date();
+		    startingStartDate.setHours(defaultStartHours);
+		    startingStartDate.setMinutes(defaultStartMinutes);
+		  } else {
+		    startingStartDate = existingStartDate;
+		  }
+		
+		  // add one day to get new due date
+		  timeToAdd = new DateComponents();
+		  timeToAdd.day = days;
+		  newStartDate = Calendar.current.dateByAddingDateComponents(
+		    startingStartDate,
+		    timeToAdd
+		  );
+		
+		  // set the due date of the task
+		  task.deferDate = newStartDate;
+		});
+	}
+
+
+	return fnLibrary;
+})();
+
+_;
