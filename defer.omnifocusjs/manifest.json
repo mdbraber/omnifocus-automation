@@ -1,0 +1,22 @@
+{
+ "defaultLocale":"en",
+ "identifier": "com.mdbraber.defer",
+ "author": "Maarten den Braber",
+ "description": "Defer actions for OmniFocus",
+ "label": "Defer actions",
+ "shortlabel": "Defer actions",
+ "version": "1.0",
+ "actions": [
+   { "identifier": "deferToday" },
+   { "identifier": "deferThisEvening" },
+   { "identifier": "deferTomorrow" },
+   { "identifier": "deferAdd1d" },
+   { "identifier": "deferAdd1w" },
+   { "identifier": "deferSubtract1d" },
+   { "identifier": "deferSubtract1w" },
+   { "identifier": "deferClear" }
+ ],
+ "libraries": [ 
+   { "identifier": "deferLibrary" }
+ ]
+}

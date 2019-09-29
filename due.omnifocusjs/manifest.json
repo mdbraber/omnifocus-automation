@@ -1,0 +1,21 @@
+{
+ "defaultLocale":"en",
+ "identifier": "com.mdbraber.due",
+ "author": "Maarten den Braber",
+ "description": "Due actions for OmniFocus",
+ "label": "Due actions",
+ "shortlabel": "Due actions",
+ "version": "1.0",
+ "actions": [
+   { "identifier": "dueToday" },
+   { "identifier": "dueTomorrow" },
+   { "identifier": "dueAdd1d" },
+   { "identifier": "dueAdd1w" },
+   { "identifier": "dueSubtract1d" },
+   { "identifier": "dueSubtract1w" },
+   { "identifier": "dueClear" }
+ ],
+ "libraries": [ 
+   { "identifier": "dueLibrary" }
+ ]
+}

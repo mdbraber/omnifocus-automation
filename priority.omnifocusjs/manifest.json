@@ -1,0 +1,18 @@
+{
+ "defaultLocale":"en",
+ "identifier": "com.mdbraber.priority",
+ "author": "Maarten den Braber",
+ "description": "Priority actions for OmniFocus",
+ "label": "Priority",
+ "shortlabel": "Priority actions",
+ "version": "1.0",
+ "actions": [
+   { "identifier": "priorityChange1" },
+   { "identifier": "priorityChange2" },
+   { "identifier": "priorityChange3" },
+   { "identifier": "priorityChange4" }
+ ],
+ "libraries": [
+   { "identifier": "priorityLibrary" }
+ ]
+}

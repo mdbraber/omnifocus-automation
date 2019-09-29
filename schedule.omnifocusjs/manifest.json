@@ -1,0 +1,16 @@
+{
+ "defaultLocale":"en",
+ "identifier": "com.mdbraber.schedule",
+ "author": "Maarten den Braber",
+ "description": "Schedule selected items in Fantastical",
+ "label": "Schedule",
+ "shortlabel": "Schedule",
+ "version": "1.0",
+ "actions": [
+   { "identifier": "scheduleNow" },
+   { "identifier": "scheduleWithOptions" }
+ ],
+ "libraries": [ 
+   { "identifier": "scheduleLibrary" }
+ ]
+}
