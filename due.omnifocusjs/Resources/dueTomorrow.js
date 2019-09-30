@@ -1,7 +1,7 @@
 var _ = (function() {
 
   var action = new PlugIn.Action(function(selection, sender) {
-	this.dueLibrary.dueChangeDate(selection, 1, null, false);
+	this.dueLibrary.changeDueDate(selection, 1);
   });
 
   action.validate = function(selection, sender) {

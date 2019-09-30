@@ -63,7 +63,7 @@ var _ = (function() {
 		  );
 		
 		  // set the due date of the task
-		  task.due = newDueDate;
+		  task.dueDate = newDueDate;
 		});
 	}
 
